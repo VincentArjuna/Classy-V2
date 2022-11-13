@@ -45,4 +45,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * RELATION
+     */
+
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class);
+    }
 }
