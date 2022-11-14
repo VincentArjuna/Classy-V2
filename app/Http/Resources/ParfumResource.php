@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
-class OutletResource extends JsonResource
+class ParfumResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,9 +21,9 @@ class OutletResource extends JsonResource
         }
         return [
             'id' => $this->id,
-            'code' => $this->code,
             'name' => $this->name,
-            'address' => $this->address,
+            'type' => $this->type,
+            'description' => Str::limit($this->description, 30, '...'),
             'status' => $status,
         ];
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\ParfumController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::resource('outlets', OutletController::class);
+    Route::resource('parfums', ParfumController::class);
 });
 
 require __DIR__ . '/auth.php';

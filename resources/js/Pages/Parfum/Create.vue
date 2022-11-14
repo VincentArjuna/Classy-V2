@@ -4,29 +4,29 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import TextArea from '@/Components/TextArea.vue';
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 
 const form = useForm({
     name: '',
-    address: '',
-    telp_1: '',
-    telp_2: '',
-    fax: '',
+    description: '',
+    type: 'Soft',
 });
 
 const submit = () => {
-    form.post(route('outlets.store'));
+    console.log(form);
+    form.post(route('parfums.store'));
 };
 </script>
 
 <template>
 
-    <Head title="New Outlet" />
+    <Head title="New Parfum" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                New Outlet
+                New Parfum
             </h2>
         </template>
 
@@ -40,28 +40,19 @@ const submit = () => {
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
                     <div class="mt-2">
-                        <InputLabel for="address" value="Address" />
-                        <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
-                            autocomplete="address" />
-                        <InputError class="mt-2" :message="form.errors.address" />
+                        <InputLabel for="description" value="Description" />
+                        <TextArea id="description" v-model="form.description" autofocus autocomplete="description" />
+                        <InputError class="mt-2" :message="form.errors.description" />
                     </div>
                     <div class="mt-2">
-                        <InputLabel for="telp_1" value="Telephone 1" />
-                        <TextInput id="telp_1" type="text" class="mt-1 block w-full" v-model="form.telp_1"
-                            autocomplete="telp_1" />
-                        <InputError class="mt-2" :message="form.errors.telp_1" />
-                    </div>
-                    <div class="mt-2">
-                        <InputLabel for="telp_2" value="Telephone 2" />
-                        <TextInput id="telp_2" type="text" class="mt-1 block w-full" v-model="form.telp_2"
-                            autocomplete="telp_2" />
-                        <InputError class="mt-2" :message="form.errors.telp_2" />
-                    </div>
-                    <div class="mt-2">
-                        <InputLabel for="fax" value="Fax" />
-                        <TextInput id="fax" type="text" class="mt-1 block w-full" v-model="form.fax"
-                            autocomplete="fax" />
-                        <InputError class="mt-2" :message="form.errors.fax" />
+                        <InputLabel for="type" value="Type" />
+                        <select id="type" v-model="form.type" class="text-sm rounded-lg block w-full p-2.5 ">
+                            <option value="Soft">Soft</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                        <InputError class="mt-2" :message="form.errors.type" />
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }"

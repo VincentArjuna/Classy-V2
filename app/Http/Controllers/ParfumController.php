@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\OutletResource;
-use App\Models\Outlet;
+use App\Http\Resources\ParfumResource;
+use App\Models\Parfum;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class OutletController extends Controller
+class ParfumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlets = OutletResource::collection(Outlet::all());
-        return Inertia::render('Outlet/Index', compact('outlets'));
+        $parfums = ParfumResource::collection(Parfum::all());
+        return Inertia::render('Parfum/Index', compact('parfums'));
     }
 
     /**
@@ -29,7 +29,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Outlet/Create');
+        return Inertia::render('Parfum/Create');
     }
 
     /**
@@ -40,21 +40,18 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        $error = $request->validate([
+        $request->validate([
             'name' => 'required',
-            'address' => 'required',
-            'telp_1' => 'required'
         ]);
-        Outlet::create([
-            'code' => 'O-' . str_pad(Outlet::count() + 1, 5, '0', STR_PAD_LEFT),
+
+        Parfum::create([
             'name' => $request->name,
-            'address' => $request->address,
-            'telp_1' => $request->telp_1,
-            'telp_2' => $request->telp_2,
-            'fax' => $request->fax,
+            'description' => $request->description,
+            'type' => $request->type,
             'modified_by' => Auth::id()
         ]);
-        return redirect()->route('outlets.index')->with('message', 'Outlet Created Successfully!');
+
+        return redirect()->route('parfums.index')->with('message', 'Parfum Created Successfully');
     }
 
     /**
@@ -74,10 +71,10 @@ class OutletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Outlet $outlet)
+    public function edit(Parfum $parfum)
     {
-        $modifier = User::find($outlet->modified_by);
-        return Inertia::render('Outlet/Edit', compact('outlet', 'modifier'));
+        $modifier = User::find($parfum->modified_by);
+        return Inertia::render('Parfum/Edit', compact('parfum', 'modifier'));
     }
 
     /**
@@ -87,25 +84,20 @@ class OutletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Outlet $outlet)
+    public function update(Request $request, Parfum $parfum)
     {
         $request->validate([
             'name' => 'required',
-            'address' => 'required',
-            'telp_1' => 'required'
         ]);
-
-        $outlet->update([
+        $parfum->update([
             'name' => $request->name,
-            'address' => $request->address,
-            'telp_1' => $request->telp_1,
-            'telp_2' => $request->telp_2,
-            'fax' => $request->fax,
+            'description' => $request->description,
+            'type' => $request->type,
             'status' => $request->status,
             'modified_by' => Auth::id()
         ]);
 
-        return redirect()->route('outlets.index')->with('message', 'Outlet Updated Successfully');
+        return redirect()->route('parfums.index')->with('message', 'Parfum Updated Successfully');
     }
 
     /**
@@ -114,9 +106,9 @@ class OutletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Outlet $outlet)
+    public function destroy(Parfum $parfum)
     {
-        $outlet->delete();
-        return redirect()->back()->with('message', 'Outlet Deleted Successfully.');
+        $parfum->delete();
+        return redirect()->back()->with('message', 'Parfum Deleted Successfully.');
     }
 }

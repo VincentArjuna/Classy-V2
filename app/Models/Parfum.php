@@ -6,29 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Outlet extends Model
+class Parfum extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'code',
         'name',
-        'address',
-        'telp_1',
-        'telp_2',
-        'fax',
+        'description',
+        'type',
         'status',
         'modified_by'
     ];
 
     /**
-     * RELATIONS
+     * RELATION
      */
-
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
 
     public function modifier()
     {
