@@ -18,7 +18,7 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlets = OutletResource::collection(Outlet::all());
+        $outlets = OutletResource::collection(Outlet::paginate(5));
         return Inertia::render('Outlet/Index', compact('outlets'));
     }
 

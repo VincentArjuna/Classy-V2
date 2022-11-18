@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import MainTable from '@/Components/MainTable.vue';
 import FlashMessage from '@/Components/FlashMessage.vue';
+import Pagination from '@/Components/Pagination.vue';
 
 defineProps({
     parfums: Object
@@ -81,6 +82,7 @@ defineProps({
                                 </td>
                             </tr>
                         </MainTable>
+                        <Pagination :data="parfums" />
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class ParfumController extends Controller
      */
     public function index()
     {
-        $parfums = ParfumResource::collection(Parfum::all());
+        $parfums = ParfumResource::collection(Parfum::paginate(5));
         return Inertia::render('Parfum/Index', compact('parfums'));
     }
 
