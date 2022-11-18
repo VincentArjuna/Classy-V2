@@ -9,24 +9,32 @@ import { Head, useForm } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    parfum: Object,
+    pelanggan: Object,
     modifier: Object
 })
 
 const form = useForm({
-    name: props.parfum?.name,
-    description: props.parfum?.description,
-    type: props.parfum?.type,
-    status: props.parfum?.status,
+    name: props.pelanggan?.name,
+    phone: props.pelanggan?.phone,
+    birth_date: props.pelanggan?.birth_date,
+    address: props.pelanggan?.address,
+    id_number: props.pelanggan?.id_number,
+    id_type: props.pelanggan?.id_type,
+    email: props.pelanggan?.email,
+    status: props.pelanggan?.status,
     modifier: props.modifier?.name
 });
 
 const submit = () => {
-    Inertia.post(`/parfums/${props.parfum.id}`, {
+    Inertia.post(`/pelanggans/${props.pelanggan.id}`, {
         _method: "put",
         name: form.name,
-        description: form.description,
-        type: form.type,
+        phone: form.phone,
+        birth_date: form.birth_date,
+        address: form.address,
+        id_number: form.id_number,
+        id_type: form.id_type,
+        email: form.email,
         status: form.status,
     });
 };
@@ -34,12 +42,12 @@ const submit = () => {
 
 <template>
 
-    <Head title="Edit Parfum" />
+    <Head title="Edit Pelanggan" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Edit Outlet
+                Edit Pelanggan
             </h2>
         </template>
 
@@ -53,20 +61,45 @@ const submit = () => {
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
                     <div class="mt-2">
-                        <InputLabel for="description" value="Description" />
-                        <TextArea id="description" v-model="form.description" autofocus autocomplete="description" />
-                        <InputError class="mt-2" :message="form.errors.description" />
+                        <InputLabel for="phone" value="Phone" />
+                        <TextInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone"
+                            autocomplete="phone" />
+                        <InputError class="mt-2" :message="form.errors.phone" />
                     </div>
                     <div class="mt-2">
-                        <InputLabel for="type" value="Type" />
-                        <select id="type" v-model="form.type"
+                        <InputLabel for="birth_date" value="Birth Date" />
+                        <input id="birth_date" type="date"
+                            class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            v-model="form.birth_date" autocomplete="birth_date" />
+                        <InputError class="mt-2" :message="form.errors.birth_date" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="address" value="Address" />
+                        <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
+                            autocomplete="address" />
+                        <InputError class="mt-2" :message="form.errors.address" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="id_type" value="ID Type" />
+                        <select id="id_type" v-model="form.id_type"
                             class="text-sm rounded-lg block w-full p-2.5 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                            <option :value="Soft">Soft</option>
-                            <option :value="Medium">Medium</option>
-                            <option :value="Neutral">Neutral</option>
-                            <option :value="Hard">Hard</option>
+                            <option value="KTP">KTP</option>
+                            <option value="SIM">SIM</option>
+                            <option value="PASSPORT">PASSPORT</option>
                         </select>
-                        <InputError class="mt-2" :message="form.errors.type" />
+                        <InputError class="mt-2" :message="form.errors.id_type" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="id_number" value="ID Number" />
+                        <TextInput id="id_number" type="text" class="mt-1 block w-full" v-model="form.id_number"
+                            autocomplete="id_numbere" />
+                        <InputError class="mt-2" :message="form.errors.id_number" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="email" value="Email" />
+                        <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
+                            autocomplete="email" />
+                        <InputError class="mt-2" :message="form.errors.email" />
                     </div>
                     <div class="mt-2">
                         <InputLabel for="status" value="Status" />

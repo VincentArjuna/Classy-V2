@@ -43,10 +43,10 @@ defineProps({
                                     Name
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Description
+                                    Phone
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Type
+                                    Address
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Status
@@ -64,10 +64,10 @@ defineProps({
                                     {{ pelanggan.name }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ pelanggan.description }}
+                                    {{ pelanggan.phone }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ pelanggan.type }}
+                                    {{ pelanggan.address }}
                                 </td>
                                 <td class="py-4 px-6">
                                     {{ pelanggan.status }}

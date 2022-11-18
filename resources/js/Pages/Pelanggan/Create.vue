@@ -4,13 +4,13 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import TextArea from '@/Components/TextArea.vue';
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 
 const form = useForm({
     name: '',
     phone: '',
     birth_date: '',
+    address: '',
     id_type: 'KTP',
     id_number: '',
     email: '',
@@ -50,9 +50,16 @@ const submit = () => {
                     </div>
                     <div class="mt-2">
                         <InputLabel for="birth_date" value="Birth Date" />
-                        <TextInput id="birth_date" type="text" class="mt-1 block w-full" v-model="form.birth_date"
-                            autocomplete="birth_date" />
+                        <input id="birth_date" type="date"
+                            class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            v-model="form.birth_date" autocomplete="birth_date" />
                         <InputError class="mt-2" :message="form.errors.birth_date" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="address" value="Address" />
+                        <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address"
+                            autocomplete="address" />
+                        <InputError class="mt-2" :message="form.errors.address" />
                     </div>
                     <div class="mt-2">
                         <InputLabel for="id_type" value="ID Type" />
@@ -69,6 +76,12 @@ const submit = () => {
                         <TextInput id="id_number" type="text" class="mt-1 block w-full" v-model="form.id_number"
                             autocomplete="id_numbere" />
                         <InputError class="mt-2" :message="form.errors.id_number" />
+                    </div>
+                    <div class="mt-2">
+                        <InputLabel for="email" value="Email" />
+                        <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email"
+                            autocomplete="email" />
+                        <InputError class="mt-2" :message="form.errors.email" />
                     </div>
                     <div class="flex items-center justify-end mt-4">
                         <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }"
