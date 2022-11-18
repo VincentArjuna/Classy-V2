@@ -28,7 +28,7 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Pelanggan/Create');
     }
 
     /**

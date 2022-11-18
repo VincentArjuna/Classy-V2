@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ParfumController;
+use App\Http\Controllers\PelangganController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
     Route::resource('outlets', OutletController::class);
     Route::resource('parfums', ParfumController::class);
+    Route::resource('pelanggans', PelangganController::class);
 });
 
 require __DIR__ . '/auth.php';

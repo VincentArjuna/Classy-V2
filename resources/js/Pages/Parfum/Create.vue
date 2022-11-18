@@ -46,7 +46,7 @@ const submit = () => {
                     </div>
                     <div class="mt-2">
                         <InputLabel for="type" value="Type" />
-                        <select id="type" v-model="form.type" class="text-sm rounded-lg block w-full p-2.5 ">
+                        <select id="type" v-model="form.type" class="text-sm rounded-lg block w-full p-2.5 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             <option value="Soft">Soft</option>
                             <option value="Medium">Medium</option>
                             <option value="Neutral">Neutral</option>

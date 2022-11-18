@@ -5,19 +5,19 @@ import MainTable from '@/Components/MainTable.vue';
 import FlashMessage from '@/Components/FlashMessage.vue';
 
 defineProps({
-    parfums: Object
+    pelanggans: Object
 })
 
 </script>
 
 <template>
 
-    <Head title="Parfum" />
+    <Head title="Pelanggan" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Parfum
+                Pelanggan
             </h2>
         </template>
 
@@ -25,9 +25,9 @@ defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <FlashMessage />
                 <div class="flex justify-end m-2 p-2">
-                    <Link :href="route('parfums.create')"
+                    <Link :href="route('pelanggans.create')"
                         class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md">
-                    New Parfum
+                    New Pelanggan
                     </Link>
                 </div>
 
@@ -54,28 +54,28 @@ defineProps({
                                 <th scope="col" class="py-3 px-6">
                                 </th>
                             </template>
-                            <tr v-for="parfum in parfums.data" :key="parfum.id"
+                            <tr v-for="pelanggan in pelanggans.data" :key="pelanggan.id"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row"
                                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ parfum.id }}
+                                    {{ pelanggan.id }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ parfum.name }}
+                                    {{ pelanggan.name }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ parfum.description }}
+                                    {{ pelanggan.description }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ parfum.type }}
+                                    {{ pelanggan.type }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{ parfum.status }}
+                                    {{ pelanggan.status }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    <Link :href="route('parfums.edit', parfum.id)"
+                                    <Link :href="route('pelanggans.edit', pelanggan.id)"
                                         class="font-medium text-blue-500 hover:text-blue-700 mr-2">Edit</Link>
-                                    <Link :href="route('parfums.destroy', parfum.id)" method="delete" as="button"
+                                    <Link :href="route('pelanggans.destroy', pelanggan.id)" method="delete" as="button"
                                         type="button" class="font-medium text-red-500 hover:text-red-700 mr-2">Delete
                                     </Link>
                                 </td>

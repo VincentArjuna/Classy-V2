@@ -6,8 +6,12 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
+import SidebarVue from '@/Components/Sidebar.vue';
 
 const showingNavigationDropdown = ref(false);
+const showingResponsiveDropdown = ref(true);
+
+
 </script>
 
 <template>
@@ -30,14 +34,43 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('outlets.index')" :active="route().current('outlets.index')">
-                                    Outlet
-                                </NavLink>
-                                <NavLink :href="route('parfums.index')" :active="route().current('parfums.index')">
-                                    Parfum
-                                </NavLink>
+                            </div>
+                            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                                <!-- Settings Dropdown -->
+                                <div class="relative">
+                                    <Dropdown align="right" width="48">
+                                        <template #trigger>
+                                            <span class="inline-flex rounded-md">
+                                                <button type="button"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                    Master Data
+
+                                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </template>
+
+                                        <template #content>
+                                            <DropdownLink :href="route('outlets.index')" as="button">
+                                                Outlet
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('parfums.index')" as="button">
+                                                Parfum
+                                            </DropdownLink>
+                                            <DropdownLink :href="route('pelanggans.index')" as="button">
+                                                Pelanggan
+                                            </DropdownLink>
+                                        </template>
+                                    </Dropdown>
+                                </div>
                             </div>
                         </div>
+
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <!-- Settings Dropdown -->
@@ -94,12 +127,48 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('outlets.index')" :active="route().current('outlets.index')">
-                            Outlet
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('parfums.index')" :active="route().current('parfums.index')">
-                            Parfum
-                        </ResponsiveNavLink>
+                        <div
+                            class="block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">
+                            <ul class="space-y-2">
+                                <li>
+                                    <button type="button" class="flex items-center w-full text-base "
+                                        aria-controls="dropdown-example"
+                                        @click="showingResponsiveDropdown = !showingResponsiveDropdown">
+
+                                        <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Master
+                                            Data</span>
+                                        <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+
+                                    <ul id="dropdown-example" class="py-2 space-y-2 w-full "
+                                        :class="{ 'hidden': showingResponsiveDropdown, 'flex-row': !showingResponsiveDropdown }">
+                                        <li class="px-2">
+                                            <ResponsiveNavLink :href="route('outlets.index')"
+                                                :active="route().current('outlets.index')">
+                                                Outlet
+                                            </ResponsiveNavLink>
+                                        </li>
+                                        <li class="px-2">
+                                            <ResponsiveNavLink :href="route('parfums.index')"
+                                                :active="route().current('parfums.index')">
+                                                Parfum
+                                            </ResponsiveNavLink>
+                                        </li>
+                                        <li class="px-2">
+                                            <ResponsiveNavLink :href="route('pelanggans.index')"
+                                                :active="route().current('pelanggans.index')">
+                                                Pelanggan
+                                            </ResponsiveNavLink>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- Responsive Settings Options -->
