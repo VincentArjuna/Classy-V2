@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('outlets', OutletController::class);
     Route::resource('parfums', ParfumController::class);
     Route::resource('pelanggans', PelangganController::class);
+    Route::resource('kategoris', KategoriController::class);
 });
 
 require __DIR__ . '/auth.php';
